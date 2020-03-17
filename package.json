@@ -1,0 +1,24 @@
+{
+  "name": "gatsby-plugin-firebase-messaging",
+  "version": "0.0.1",
+  "description": "Gatsby plugin to quickly add Firebase Cloud Messaging, compatible with gatsby-plugin-offline",
+  "main": "index.js",
+  "author": "Benjamin Olson <ben@whynotben.com>",
+  "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "firebase",
+    "messaging"
+  ],
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "firebase": "^7.11.0"
+  }
+}

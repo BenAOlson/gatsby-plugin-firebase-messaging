@@ -5,18 +5,19 @@
       "dom",
       "es6"
     ],
-    "sourceMap": true,
-    "jsx": "react",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    // "jsx": "react",
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "declaration": true,
-    "declarationMap": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "strict": true,
+    "removeComments": true,
     "typeRoots": [
       "./node_modules/@types"
     ],
@@ -33,6 +34,6 @@
     "./src/**/*"
   ],
   "exclude": [
-    "./node_modules/*"
+    "./node_modules/*",
   ]
 }

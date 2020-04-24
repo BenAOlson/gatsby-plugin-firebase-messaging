@@ -11,7 +11,10 @@
     "firebase",
     "messaging"
   ],
-  "repository": {"type": "git", "url": "https://github.com/BenAOlson/gatsby-plugin-firebase-messaging"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenAOlson/gatsby-plugin-firebase-messaging"
+  },
   "homepage": "https://github.com/BenAOlson/gatsby-plugin-firebase-messaging#readme",
   "bugs": {
     "url": "https://github.com/BenAOlson/gatsby-plugin-firebase-messaging/issues"

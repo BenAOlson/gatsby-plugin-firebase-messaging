@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-firebase-messaging",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gatsby plugin to help manage Firebase messaging service worker",
   "main": "index.js",
   "author": "Benjamin Olson <ben@whynotben.com>",

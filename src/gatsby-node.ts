@@ -39,7 +39,7 @@ const replaceFirebasePlaceholders = (options: Options) => {
   const firebaseSwText = fs
     .readFileSync(path.join(__dirname, 'firebase-messaging-sw.js'))
     .toString()
-    .replace(re, matched => options[matched.replace(/%/g, '')])
+    .replace(re, matched => options.config[matched.replace(/%/g, '')])
     .replace('"use strict";', '')
   return firebaseSwText
 }

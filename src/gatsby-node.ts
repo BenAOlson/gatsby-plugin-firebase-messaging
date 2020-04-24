@@ -21,7 +21,7 @@ export const onPreInit = (
   ) {
     const firebaseSwText = replaceFirebasePlaceholders(options)
 
-    fs.writeFile('public/firebase-messaging-sw.js', firebaseSwText, err => {
+    fs.writeFile('public/firebase-messaging-sw.js', firebaseSwText, (err) => {
       err && console.log(err)
     })
   } else {
@@ -31,7 +31,7 @@ export const onPreInit = (
 
 const replaceFirebasePlaceholders = (options: Options) => {
   const placeholderStringArray = requiredConfigCredentials.map(
-    credential => `%${credential}%`
+    (credential) => `%${credential}%`
   )
   const re = new RegExp(placeholderStringArray.join('|'), 'g')
 
@@ -39,14 +39,14 @@ const replaceFirebasePlaceholders = (options: Options) => {
   const firebaseSwText = fs
     .readFileSync(path.join(__dirname, 'firebase-messaging-sw.js'))
     .toString()
-    .replace(re, matched => options.config[matched.replace(/%/g, '')])
+    .replace(re, (matched) => options.config?.[matched.replace(/%/g, '')])
     .replace('"use strict";', '')
   return firebaseSwText
 }
 
 const deleteFirebaseSwFile = () => {
   if (fs.existsSync('public/firebase-messaging-sw.js')) {
-    fs.unlink('public/firebase-messaging-sw.js', err => {
+    fs.unlink('public/firebase-messaging-sw.js', (err) => {
       err && console.log(err)
     })
   }
@@ -61,7 +61,7 @@ const checkConfig = (reporter: Reporter, options: Options) => {
     }
 
     const missingCredentials: string[] = []
-    requiredConfigCredentials.forEach(credential => {
+    requiredConfigCredentials.forEach((credential) => {
       if (!Object.keys(options.config!).includes(credential)) {
         missingCredentials.push(credential)
       }

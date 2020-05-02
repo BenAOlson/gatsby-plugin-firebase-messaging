@@ -21,6 +21,10 @@ export const onPreInit = (
   ) {
     const firebaseSwText = replaceFirebasePlaceholders(options)
 
+    if (!fs.existsSync('public')) {
+        fs.mkdirSync('public')
+    }
+	 
     fs.writeFile('public/firebase-messaging-sw.js', firebaseSwText, (err) => {
       err && console.log(err)
     })

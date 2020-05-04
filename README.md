@@ -22,9 +22,9 @@ plugins: [
         appId: 'YOUR_FIREBASE_APP_ID',
         messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
         projectId: 'YOUR_FIREBASE_PROJECT_ID',
-      }
+      },
       //both of these are optional
-      disableDevelopment: true //disables development service worker
+      disableDevelopment: true, //disables development service worker
       removeFirebaseServiceWorker: true, //tells plugin to help unregistering/removing
     },
   },

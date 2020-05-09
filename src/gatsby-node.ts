@@ -6,6 +6,7 @@ import { requiredConfigCredentials } from './options'
 //not exhaustive at all...
 type Reporter = {
   panic: (msg: string) => void
+  warn: (msg: string) => void
 }
 
 export const onPreInit = (
@@ -22,9 +23,9 @@ export const onPreInit = (
     const firebaseSwText = replaceFirebasePlaceholders(options)
 
     if (!fs.existsSync('public')) {
-        fs.mkdirSync('public')
+      fs.mkdirSync('public')
     }
-	 
+
     fs.writeFile('public/firebase-messaging-sw.js', firebaseSwText, (err) => {
       err && console.log(err)
     })
@@ -59,7 +60,7 @@ const deleteFirebaseSwFile = () => {
 const checkConfig = (reporter: Reporter, options: Options) => {
   if (!options.removeFirebaseServiceWorker) {
     if (!options.config) {
-      reporter.panic(
+      reporter.warn(
         `no 'config' option passed to gatsby-plugin-firebase-messaging`
       )
     }
@@ -72,7 +73,7 @@ const checkConfig = (reporter: Reporter, options: Options) => {
     })
 
     if (missingCredentials.length > 0) {
-      reporter.panic(
+      reporter.warn(
         `gatsby-plugin-firebase-messaging was missing the following required values:
 
 ${missingCredentials.join('\n')}`

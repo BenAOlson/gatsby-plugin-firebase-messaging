@@ -31,8 +31,6 @@ plugins: [
 ]
 ```
 
-*note: the Firebase messaging service worker won't be registered in your app until `messaging().getToken()` is called.*
-
 #### Options:
 ##### `disableDevelopment`:
 Use this option to tell `gatsby-plugin-firebase-messaging` not to create a service worker file for development builds. Additionally, setting this option to `true` will unregister currently registered Firebase service workers in development environments.

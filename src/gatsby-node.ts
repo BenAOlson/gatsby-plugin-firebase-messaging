@@ -1,13 +1,8 @@
+import { Reporter } from 'gatsby'
+import { Options, requiredConfigCredentials } from './options'
 import fs from 'fs'
 import path from 'path'
-import { Options } from './options'
-import { requiredConfigCredentials } from './options'
-
-//not exhaustive at all...
-type Reporter = {
-  panic: (msg: string) => void
-  warn: (msg: string) => void
-}
+import { getFirebaseVersion } from './utils'
 
 export const onPreInit = (
   { reporter }: { reporter: Reporter },
@@ -20,7 +15,7 @@ export const onPreInit = (
       process.env.NODE_ENV === 'production') &&
     !options.removeFirebaseServiceWorker
   ) {
-    const firebaseSwText = replaceFirebasePlaceholders(options)
+    const firebaseSwText = replaceFirebasePlaceholders(reporter, options)
 
     if (!fs.existsSync('public')) {
       fs.mkdirSync('public')
@@ -34,17 +29,24 @@ export const onPreInit = (
   }
 }
 
-const replaceFirebasePlaceholders = (options: Options) => {
+const replaceFirebasePlaceholders = (reporter: Reporter, options: Options) => {
   const placeholderStringArray = requiredConfigCredentials.map(
     (credential) => `%${credential}%`
   )
+  placeholderStringArray.push('%version%')
+
   const re = new RegExp(placeholderStringArray.join('|'), 'g')
 
-  //load text from sw file, replace placeholders with config values
+  //load text from sw file, replace placeholders with appropriate values
   const firebaseSwText = fs
     .readFileSync(path.join(__dirname, 'firebase-messaging-sw.js'))
     .toString()
-    .replace(re, (matched) => options.config?.[matched.replace(/%/g, '')])
+    .replace(
+      re,
+      (matched) =>
+        options.config?.[matched.replace(/%/g, '')] ??
+        getFirebaseVersion(reporter)
+    )
     .replace('"use strict";', '')
   return firebaseSwText
 }

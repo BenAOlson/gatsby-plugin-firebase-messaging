@@ -1,6 +1,10 @@
 import { Reporter } from 'gatsby'
 import fs from 'fs'
 
+/**
+ * Reads firebase version from either package-lock.json or yarn.lock
+ * @param reporter Gatsby reporter
+ */
 export const getFirebaseVersion = (reporter: Reporter): string => {
   const yarnLock = 'yarn.lock'
   const packageLock = 'package-lock.json'

@@ -35,6 +35,8 @@ const replaceFirebasePlaceholders = (reporter: Reporter, options: Options) => {
   )
   placeholderStringArray.push('%version%')
 
+  const fbVersion = options.firebaseVersion ?? getFirebaseVersion(reporter)
+
   const re = new RegExp(placeholderStringArray.join('|'), 'g')
 
   //load text from sw file, replace placeholders with appropriate values
@@ -43,9 +45,7 @@ const replaceFirebasePlaceholders = (reporter: Reporter, options: Options) => {
     .toString()
     .replace(
       re,
-      (matched) =>
-        options.config?.[matched.replace(/%/g, '')] ??
-        getFirebaseVersion(reporter)
+      (matched) => options.config?.[matched.replace(/%/g, '')] ?? fbVersion
     )
     .replace('"use strict";', '')
   return firebaseSwText

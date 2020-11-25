@@ -15,6 +15,7 @@ export type Options = Partial<{
   }
   disableDevelopment: boolean
   removeFirebaseServiceWorker: boolean
+  firebaseVersion: string
   [key: string]: any
 }> & {
   //I'm not sure what the 'plugins' array is, but gatsby always sends it

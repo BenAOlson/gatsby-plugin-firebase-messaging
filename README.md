@@ -1,6 +1,6 @@
 # gatsby-plugin-firebase-messaging
 
-This plugin handles the setup, configuration, and, if needed, removal of service workers required by Firebase cloud messaging. The rest of the usage of Firebase messaging will follow your particular project's needs, and can be done as outlined in Firebase's documentation.
+This plugin handles the setup, configuration, and, if needed, removal of service workers required by Firebase cloud messaging. The rest of the usage of Firebase messaging will follow your particular project's needs, and can be set up as outlined in Firebase's documentation.
 
 ## Install
 
@@ -23,15 +23,21 @@ plugins: [
         messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
         projectId: 'YOUR_FIREBASE_PROJECT_ID',
       },
-      //both of these are optional
-      disableDevelopment: true, //disables development service worker
-      removeFirebaseServiceWorker: true, //tells plugin to help unregistering/removing
+      //optionally override the firebase version used by the service worker
+      firebaseVersion: 'FIREBASE_VERSION_NUMBER', //e.g., '8.1.1'
+      //optionally disables development service worker
+      disableDevelopment: true, 
+      //optionally tells plugin to help unregistering/removing service worker
+      removeFirebaseServiceWorker: true,
     },
   },
 ]
 ```
 
 #### Options:
+*Note: Aside from `config`, all of these are optional.*
+##### `firebaseVersion`:
+By default, this plugin uses the firebase version from your `yarn.lock` or `package-lock.json` file. However, you can set a specific firebase version using this option.
 ##### `disableDevelopment`:
 Use this option to tell `gatsby-plugin-firebase-messaging` not to create a service worker file for development builds. Additionally, setting this option to `true` will unregister currently registered Firebase service workers in development environments.
 

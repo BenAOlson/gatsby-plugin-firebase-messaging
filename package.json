@@ -20,7 +20,7 @@
     "url": "https://github.com/BenAOlson/gatsby-plugin-firebase-messaging/issues"
   },
   "devDependencies": {
-    "gatsby": "^2.27.2",
+    "gatsby": "^4.25.7",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
